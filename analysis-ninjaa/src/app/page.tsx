@@ -3,6 +3,7 @@ import Hero from '@/components/landingPage/Hero'
 import Signup from '@/components/entryPage/Signup'
 import Login from '@/components/entryPage/Login'
 import User from '@/components/dashboard/User'
+import Analyze from '@/components/analysisPage/Analyze'
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
      {/* <Hero/> */}
      {/* <Signup />
      <Login /> */}
-     <User />
+     {/* <User /> */}
+      <Analyze />
     </main>
   )
 }

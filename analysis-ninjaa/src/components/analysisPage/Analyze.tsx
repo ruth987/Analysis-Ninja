@@ -1,7 +1,20 @@
+"use client"
+import { useState } from 'react'
 import Image from 'next/image'
-
+import SentMessage from './SentMessage'
+import RecievedMessage from './RecievedMessage'
+import { MdInput } from "react-icons/md";
 
 export default function Analyze() {
+  const [messages, setMessages] = useState([])
+  const [input, setInput] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const message = e.target.elements[0].value;
+    setMessages([...messages, message]);
+    setInput(''); 
+}
 
   return (
     <div className="flex">
@@ -19,7 +32,6 @@ export default function Analyze() {
             </div>
             <div><h2 className="text-2xl font-bold mb-4 pt-1">Code</h2></div>
         </div>
-        
         
         <textarea
           className="w-full h-96 p-4 rounded border border-gray-300"
@@ -58,14 +70,34 @@ export default function Analyze() {
           </div>
 
           {/* // other messages */}
+          {
+            messages.map(message => (
+              <SentMessage key={message}>
+                {message}
+              </SentMessage>
 
+            ))
+          }
         </div>
 
         {/* Input */}
-        <input
-          className="w-full bg-gray-100 mt-4 p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600" 
-          placeholder="Ask me anything..."
-        />
+        <form onSubmit={handleSubmit}>
+          <div className='relative'>
+            <div>
+              <input
+                value={input} 
+                onChange={e => setInput(e.target.value)}
+                className="w-full bg-gray-100 mt-4 p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600" 
+                placeholder="Ask me anything..."
+              />
+            </div>
+
+            <div className='absolute text-gray-500 hover:text-gray-900 cursor-pointer bottom-2 left-80 pl-8'>
+                <MdInput size = {30} />
+            </div>
+          </div>
+          
+        </form>
 
       </div>
 
@@ -73,3 +105,4 @@ export default function Analyze() {
   )
 
 }
+

@@ -8,7 +8,7 @@ import Analyze from '@/components/analysisPage/Analyze'
 export default function Home() {
   return (
     <main>
-     {/* <Hero/> */}
+     {/* <Hero/>   */}
      {/* <Signup />
      <Login /> */}
      {/* <User /> */}

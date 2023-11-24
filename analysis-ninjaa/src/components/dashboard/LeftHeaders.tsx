@@ -5,8 +5,20 @@ import { BsQuestionSquareFill } from "react-icons/bs";
 import { VscEmptyWindow } from "react-icons/vsc";
 import { MdStart } from "react-icons/md";
 import { MdOutlineGroups2 } from "react-icons/md";
+import { useUser } from '../../hooks/useUser';
+import { useGetUserQuery } from '../../lib/redux/services/userApi';
+import { selectUser } from '../../lib/redux/features/userSlice';
+import { useSelector } from 'react-redux';
 
 const LeftHeaders = () => {
+    const handle = "ruthwossen75";
+    
+    const { data } = useGetUserQuery(handle); 
+  
+    const user = useSelector(selectUser);
+    console.log(data);
+    console.log(user);
+    
   return (
     <div className='w-1/5 bg-gray-200 space-y-2 p-3 rounded-lg'>
             
@@ -39,7 +51,7 @@ const LeftHeaders = () => {
                 </div>
                 <div className='flex space-x-2 my-auto text-gray-600 hover:text-gray-900  hover:bg-gray-300 w-fit rounded-full p-2 transition-all duration-300 '>
                     <MdOutlineGroups2 size = {20}/>
-                    <a href='#'>Groups</a>
+                    <a href='#'>Friends <span className='bg-purple-800 text-white text-xs rounded-full w-3 p-1'>{data?.result[0]?.friendOfCount}</span></a>
                 </div>
                 
                 
@@ -58,10 +70,10 @@ const LeftHeaders = () => {
                 alt='profile'
                 className='rounded-full w-16 h-16 mx-auto ring-2 ring-purple-900 pb-2'
                 />
-                <h1 className='text-center text-xl text-gray-800'>Ruth Wossen</h1>
+                <h1 className='text-center text-xl text-gray-800'>{data?.result[0]?.handle || 'Unknown'}</h1>
                 <div className='text-gray-500 text-sm mx-auto pt-2'>
-                    <h2>Rank : 30054</h2>
-                    <h3>Points : 50</h3>
+                    <h2>Rank : {data?.result[0]?.rank}</h2>
+                    <h3>Rating : {data?.result[0]?.rating}</h3>
                     {/* <h4>Problems Solved</h4>
                     <h5>Problems Submitted</h5>
                     <h6>Problems Attempted</h6> */}

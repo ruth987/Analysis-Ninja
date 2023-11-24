@@ -11,8 +11,8 @@ export default function Home() {
      {/* <Hero/>   */}
      {/* <Signup />
      <Login /> */}
-     {/* <User /> */}
-      <Analyze />
+     <User />
+      {/* <Analyze /> */}
     </main>
   )
 }

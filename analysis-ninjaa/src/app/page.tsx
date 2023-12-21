@@ -4,15 +4,20 @@ import Signup from '@/components/entryPage/Signup'
 import Login from '@/components/entryPage/Login'
 import User from '@/components/dashboard/User'
 import Analyze from '@/components/analysisPage/Analyze'
+import AuthForm from './auth-form'
+import Feature from '@/components/landingPage/Feature'
+import Footer from '@/components/landingPage/Footer'
 
 export default function Home() {
   return (
     <main>
-     {/* <Hero/>   */}
+     <Hero/>  
      {/* <Signup />
      <Login /> */}
-     <User />
-      {/* <Analyze /> */}
+     {/* <User /> */}
+     <Feature />
+     <Footer />
+      
     </main>
   )
 }

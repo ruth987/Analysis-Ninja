@@ -1,20 +1,44 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import SentMessage from './SentMessage'
 import RecievedMessage from './RecievedMessage'
 import { MdInput } from "react-icons/md";
+import axios from 'axios'
 
 export default function Analyze() {
   const [messages, setMessages] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const [input, setInput] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const message = e.target.elements[0].value;
     setMessages([...messages, message]);
+    sendMessage(message);
+
+
     setInput(''); 
 }
+  const sendMessage = (message) => {
+    const url = 'https://api.openai.com/v1/chat/completions';
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`
+    }
+    const data = {
+      model : "gpt-3.5-turbo-0301",
+      messages : [{"role" : "user", "content" : message}],
+    }
+    axios.post(url, data, {headers}).then((response) => {
+      console.log(response)
+      setMessages((prevmessage) => [...prevmessage, {type: 'bot', message:response.data.choices[0].message.content}])
+      // setMessages((prevmessage) => [...prevmessage, {type: 'bot', message:response.data.choices[0].message.content}])
+    }).catch((error) => {
+      console.log(error)
+    }
+    ) 
+  }
 
   return (
     <div className="flex">
@@ -73,7 +97,7 @@ export default function Analyze() {
           {
             messages.map(message => (
               <SentMessage key={message}>
-                {message}
+                {message.message}
               </SentMessage>
 
             ))

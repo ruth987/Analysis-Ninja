@@ -1,6 +1,7 @@
 import React from 'react';
-import bgImg from '/hero-bg.png'; 
+import bgImg from '../../../public/hero-bg.png'; 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Hero = () => {
 
@@ -41,10 +42,11 @@ const Hero = () => {
 
           </div>
           
-        
+        <Link href="/signup">
         <button className="bg-white text-primary rounded-md px-4 py-1 hover:font-semibold">
           Sign Up 
         </button>
+        </Link>
         </div>
       </nav>
 

@@ -9,6 +9,7 @@ import { useUser } from '../../hooks/useUser';
 import { useGetUserQuery } from '../../lib/redux/services/userApi';
 import { selectUser } from '../../lib/redux/features/userSlice';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 const LeftHeaders = () => {
     const handle = "ruthwossen75";
@@ -58,17 +59,18 @@ const LeftHeaders = () => {
             </li>
             <div className='bg-gray-700 text-gray-100 w-2/3 align-middle flex flex-row space-x-3 p-2 
                 mx-auto rounded-full items-center justify-center hover:bg-gray-950 cursor-pointer transition-all duration-300'>
-                    <a href='#'>Start Now</a>
+                    <Link href = '/analyze'>Start Now</Link>
                     <MdStart size = {20}/>
                 </div>
             {/* profile */}
-            <div className='flex flex-col pt-6 '>
+            <Link href = '/profile'>
+            <div className='flex flex-col pt-6 cursor-pointer '>
                 <Image 
-                src='/profile.jpeg'
-                width={80}
-                height={80}
-                alt='profile'
-                className='rounded-full w-16 h-16 mx-auto ring-2 ring-purple-900 pb-2'
+                    src='/profile.jpeg'
+                    width={80}
+                    height={80}
+                    alt='profile'
+                    className='rounded-full w-16 h-16 mx-auto ring-2 ring-purple-900 pb-2'
                 />
                 <h1 className='text-center text-xl text-gray-800'>{data?.result[0]?.handle || 'Unknown'}</h1>
                 <div className='text-gray-500 text-sm mx-auto pt-2'>
@@ -80,6 +82,7 @@ const LeftHeaders = () => {
 
                 </div>
                 </div>
+                </Link>
             
             
         </div>
